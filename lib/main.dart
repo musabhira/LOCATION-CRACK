@@ -1,6 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notify_location/core/bottom_nav.dart';
 import 'package:notify_location/view/home_page.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: scaffoldMessangerKey,
       debugShowCheckedModeBanner: false,
       // theme: ThemeData.dark(),
-      home: const HomePage(),
+      home: const BottomNaviWidet(),
     );
   }
 }

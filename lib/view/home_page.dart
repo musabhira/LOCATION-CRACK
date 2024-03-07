@@ -11,12 +11,121 @@ class HomePage extends ConsumerWidget {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            // backgroundColor: const Color(0xff333333),
-            title: const Center(
+            title: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
               child: Text(
                 'LOcATION cRAcK',
                 style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
               ),
+            ),
+          ),
+          drawer: Drawer(
+            backgroundColor: const Color.fromARGB(255, 0, 221, 173),
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                  curve: Curves.easeIn,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(width: 10),
+                          Text(
+                            'LOcATION cRAck',
+                            style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'Ready To go',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  leading:
+                      const Icon(Icons.home, size: 24, color: Colors.white),
+                  title: const Text(
+                    'Home',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.receipt_long_outlined,
+                      size: 24, color: Colors.white),
+                  title: const Text(
+                    'New Resume',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading:
+                      const Icon(Icons.list, size: 24, color: Colors.white),
+                  title: const Text(
+                    'Location Cracker',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const RotationTransition(
+                    turns: AlwaysStoppedAnimation(180 / 360),
+                    child: Icon(
+                      Icons.logout,
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  ),
+                  title: const Text(
+                    'Logout',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Are you sure?'),
+                          content: const Text('Would you like to logout?'),
+                          actions: [
+                            TextButton(
+                              child: const Text('Cancel'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: const Text('Logout'),
+                              onPressed: () {
+                                // Perform logout action
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
+              ],
             ),
           ),
           body: SingleChildScrollView(
@@ -27,7 +136,16 @@ class HomePage extends ConsumerWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Container(
-                      color: const Color(0xff333333),
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 3, 66, 82),
+                            Color(0xff222222),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                      ),
                       child: Column(
                         children: [
                           GridView.builder(
@@ -92,21 +210,20 @@ class HomePage extends ConsumerWidget {
                       final data = ref.watch(locationProvider).location[index];
                       return Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 12),
+                            horizontal: 24, vertical: 4),
                         child: Container(
-                          // height: 70,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: const Color(0xFFf2f2f2),
+                            color: const Color.fromARGB(255, 0, 221, 173),
                           ),
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Request ${index + 1}",
+                                "Tracking ${index + 1}",
                                 style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -123,7 +240,7 @@ class HomePage extends ConsumerWidget {
                                     "Lng :${data.lon.toString()}",
                                   ),
                                   Text(
-                                    "Speed : ${data.speed.toString()}",
+                                    "Speed : ${data.speed.toStringAsFixed(0)}m",
                                   )
                                 ],
                               )

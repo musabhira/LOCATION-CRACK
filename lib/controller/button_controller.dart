@@ -136,4 +136,19 @@ List<ButtonModel> buttonList = [
       );
     },
   ),
+  ButtonModel(
+    buttonName: 'Location Cracking',
+    buttonColor: const Color.fromARGB(255, 0, 221, 173),
+    onTap: (ref, context) {
+      ref.read(locationProvider.notifier).stopLocationPolling();
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: 11,
+          channelKey: 'Location Cracking',
+          actionType: ActionType.Default,
+          title: 'LOCation Crack',
+        ),
+      );
+    },
+  ),
 ];
