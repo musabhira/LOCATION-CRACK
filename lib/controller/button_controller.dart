@@ -66,7 +66,7 @@ List<ButtonModel> buttonList = [
     buttonColor: const Color.fromARGB(255, 0, 221, 173),
     onTap: (ref, context) {
       // ignore: avoid_print
-      print("Hellow");
+      print("success");
       AwesomeNotifications().requestPermissionToSendNotifications();
     },
   ),
@@ -110,6 +110,7 @@ List<ButtonModel> buttonList = [
         );
       } else {
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: ((context) {
             return const AlertDialog(
